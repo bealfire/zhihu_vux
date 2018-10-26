@@ -1,15 +1,34 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      component: () => import('@/components/HelloWorld'),
+      children: [
+        {
+          //关注
+          path: '/follow',
+          component: () => import('@/page/follow'),
+        },
+        {
+          //推荐
+          path: '/recommend',
+          component: () => import('@/page/recommend'),
+        },
+        {
+          //热榜
+          path: '/hotList',
+          component: () => import('@/page/hotList'),
+        },
+        {
+          //视频
+          path: '/video',
+          component: () => import('@/page/video'),
+        },
+      ]
     }
   ]
 })
